@@ -155,8 +155,11 @@ text {
           <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
             <div class="panel-body">
               <p>This data visualization was created by Hannah Bown, Rita Zevallos, and Jonah Schwartz, with the advice of Neil McDevitt (Executive Director of the <a href="http://dhcc.org/">dhcc</a>), during the 2015 evoHaX hackathon.</p>
-              <p>Data was collected with the help of the <a href="http://bl.ocks.org/mbostock/5944371">Youtube Data API</a>. This open source sunburst flare was originally created by <a href="http://bl.ocks.org/mbostock/5944371">John Stasko</a>.</p>
-            </div>
+              <p>Data was collected with the help of the <a href="http://bl.ocks.org/mbostock/5944371">Youtube Data API</a>. This open source sunburst flare was originally created by <a href="http://bl.ocks.org/mbostock/5944371">John Stasko</a></p> 
+
+              <p>In the future, we'd like to expand this chart so that it updates dynamically with daily information on captioned vs. uncaptioned YouTube videos. We would also like to add an alternate viewing mode that sorts the categories by highest caption ratio instead of by highest number of total videos. </p>
+       
+      </div>
           </div>
         </div>
       </div>
@@ -281,8 +284,11 @@ d3.json("dummy.json", function(error, root) {
     d3.select("#explanation")
         .style("visibility", "");
 
-    var alt_text = "%s of %s videos on Youtube are accessible*"%(percentageString, nameString)
+    // var alt_text = "%s of %s videos on Youtube are accessible*"%(percentageString, nameString);
 
+    var alt_text = percentageString + " of " + nameString + " videos on Youtube are accessible";
+
+    console.log(alt_text); 
     d3.select('#alt_chart_image').attr('alt',alt_text);
   }
 
@@ -295,6 +301,10 @@ d3.json("dummy.json", function(error, root) {
 
       var total_genre = d.value;
 
+      if (!d.children){
+          d=d.parent;
+          total_genre = d.value;
+      }
       if (d.children[0].name === "with annotations"){
           var total_captioned = d.children[0].value;
       }
