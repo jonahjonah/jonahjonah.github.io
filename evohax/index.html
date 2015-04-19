@@ -30,13 +30,15 @@ text {
 #explanation {
   z-index: 2;
   position: absolute;
-  top: 300px;
+  top: 305px;
   left:400px;
   text-align: center;
   width: 140px;
   color: #666;
 }
-
+#genre_name{
+  font-weight: bold
+}
 #percentage {
   font-size: 2.5em;
 }
@@ -71,7 +73,7 @@ text {
              <br><br>
               <b>Step 1:</b> Navigate to YouTube's Video Manager, which is found in the Creator Studio.
               <br>
-              <img src="figures/0.5.png" alt="Screenshot of Video Manager location" width = "150" title="YouTube's Video Manager location" style="vertical-align:middle">
+              <img src="figures/10.png" alt="Screenshot of Video Manager location" width = "150" title="YouTube's Video Manager location" style="vertical-align:middle">
               <br><br>
               <b>Step 2:</b> The option to add Subtitles and CC is under the down arrow next to the Edit button of the video you wish to change.
               <br>
@@ -98,14 +100,14 @@ text {
         </div>
 
         <div class="panel panel-default">
-          <div class="panel-heading" role="tab" id="headingThree">
+          <div class="panel-heading" role="tab" id="headingTwo">
             <h4 class="panel-title">
-              <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                 Subtitles vs. Closed Captioning
               </a>
             </h4>
           </div>
-          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
             <div class="panel-body">
               <p>
               In European nations, there is no significant distinction between subtitles and closed captions. However, in the U.S. and Canada, subtitles refer to a translation of the dialogue and assume the audience can hear. Closed captioning, on the other hand, is meant to replace all sound, not just dialogue.<br>
@@ -117,17 +119,16 @@ text {
             </div>
           </div>
         </div>
-      </div>
 
         <div class="panel panel-default">
-          <div class="panel-heading" role="tab" id="headingTwo">
+          <div class="panel-heading" role="tab" id="headingThree">
             <h4 class="panel-title">
-              <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                 Resources
               </a>
             </h4>
           </div>
-          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
             <div class="panel panel-default">
 
               <a href="https://amara.org/en/">Amara.org</a> allows users to create captions for videos they don't own and share the videos with others. 
@@ -144,20 +145,23 @@ text {
           </div>
         </div>
         <div class="panel panel-default">
-          <div class="panel-heading" role="tab" id="headingThree">
+          <div class="panel-heading" role="tab" id="headingFour">
             <h4 class="panel-title">
-              <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                 About
               </a>
             </h4>
           </div>
-          <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
             <div class="panel-body">
               <p>This data visualization was created by Hannah Bown, Rita Zevallos, and Jonah Schwartz, with the advice of Neil McDevitt (Executive Director of the <a href="http://dhcc.org/">dhcc</a>), during the 2015 evoHaX hackathon.</p>
               <p>Data was collected with the help of the <a href="http://bl.ocks.org/mbostock/5944371">Youtube Data API</a>. This open source sunburst flare was originally created by <a href="http://bl.ocks.org/mbostock/5944371">John Stasko</a>.</p>
             </div>
           </div>
         </div>
+
+
+        
       </div>
 
 
@@ -182,11 +186,11 @@ var x = d3.scale.linear()
 var y = d3.scale.linear()
     .range([0, radius]);
 
-//var color = d3.scale.category20();
+var color = d3.scale.category20c();
 
-var color = d3.scale.linear()
-    .domain([0,44,89])
-    .range(["red", "blue", "green"]);
+// var color = d3.scale.linear()
+//     .domain([0,40])
+//     .range(["yellow", "cyan"]);
 
 var svg = d3.select("#container").append("svg")
     .attr("width", width)
@@ -315,6 +319,14 @@ d3.json("dummy.json", function(error, root) {
             arcText.transition().duration(750)
               .attr("opacity", 1)
               .attr("transform", function() { return "rotate(" + computeTextRotation(e) + ")" })
+              // .attr("transform", function() { 
+              //   if(e.name != "flare"){
+              //     return ("rotate(" + 0 + ")");
+              //   }
+              //   else {
+              //     return ("rotate(" + computeTextRotation(e) + ")");
+              //   }
+              // })
               .attr("x", function(d) { return y(d.y); });
           }
       });
