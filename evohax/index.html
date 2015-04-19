@@ -247,7 +247,7 @@ d3.json("dummy.json", function(error, root) {
       //   ;})
     .style("opacity", function(d){ 
       if (d.name === "without annotations") return 0.33;
-      if (d.name === "with annotations") return 0.66;
+      if (d.name === "with annotations") return 0.75;
       else return 1;
     })
     .on("click", click);
