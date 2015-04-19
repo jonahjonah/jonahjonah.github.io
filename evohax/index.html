@@ -53,6 +53,7 @@ text {
           <span id="percentage"></span><br/>
           of <span id="genre_name"></span> videos on Youtube are accessible*
         </div>
+        <img src="" id="alt_chart_image" alt="THIS IS ALT TEXT FOR THE GRAPH">
         <!-- the D3 svg gets appended here -->
       </div>
     </div>
@@ -161,7 +162,7 @@ text {
         </div>
 
 
-        
+
       </div>
 
 
@@ -220,7 +221,6 @@ d3.json("dummy.json", function(error, root) {
     .attr("d", arc)
     //.style("fill", function(d) { return color((d.children ? d : d.parent).name); })
     .attr("fill", function (d) {
-      console.log(d);
       //debugger; 
       //console.log((parseInt(color(d.value).substring(1,7),16)).toString(16));
       if (d.name === "flare") return "#ffffff"; 
@@ -285,6 +285,10 @@ d3.json("dummy.json", function(error, root) {
 
     d3.select("#explanation")
         .style("visibility", "");
+
+    var alt_text = "%s of %s videos on Youtube are accessible*"%(percentageString, nameString)
+
+    d3.select('#alt_chart_image').attr('alt',alt_text);
   }
 
   function click(d) {
