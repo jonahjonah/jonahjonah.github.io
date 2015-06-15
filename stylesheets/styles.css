@@ -1,10 +1,21 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:300italic,700italic,300,700);
 
-body {
+/*body {
   padding:50px;
   font:14px/1.5 Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
   color:#777;
   font-weight:300;
+}*/
+
+html, body {
+  width: 100%;
+  margin: 1.5% auto 1.75% auto;
+  margin-left: 1em;
+  font-family: "Gentium Basic", "serif";
+  font-size: 16px;
+  text-align: left;
+  background: #dddddd;
+  color: darkgreen;
 }
 
 h1, h2, h3, h4, h5, h6 {
